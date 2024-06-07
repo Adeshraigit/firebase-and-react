@@ -1,7 +1,7 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from 'firebase/app'
-import { createUserWithEmailAndPassword, getAuth, } from "firebase/auth"
-import { getDatabase, set, ref } from "firebase/database"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { getDatabase, set, ref, get, child, onValue } from "firebase/database"
 
 const firebaseConfig = {
     apiKey: "AIzaSyCvTVmjihznpA292pQbroMvMjfKqlXu7FA",
@@ -24,14 +24,23 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props) => {
 
+    const [name, setName] = useState("");
+
     const signupUserWithEmailPassword = (email, password) => {
         return createUserWithEmailAndPassword(firebaseAuth, email, password)
     }
 
     const putData = (key, data) => set(ref(database, key), data)
 
+    // get(child(ref(database), "users/Adesh")).then(snapShot => console.log(snapShot.val()))
+
+    useEffect(() => {
+        onValue(ref(database, "users/Adesh"),(snapShot) => setName(snapShot.val().email))
+    }, [])
+
     return (
         <FirebaseContext.Provider value={{signupUserWithEmailPassword, putData}} >
+            <h1>Email is {name}</h1>
             {props.children}
         </FirebaseContext.Provider>
     )

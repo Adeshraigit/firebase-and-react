@@ -9,6 +9,10 @@ function App() {
 
   console.log("Firebase", firebase);
 
+  const putDataNew = () => {
+    firebase.putData('root/a/b', { id: 1 });
+  };
+
   return (
     <>
      <h1 className="text-5xl font-bold">
@@ -29,6 +33,7 @@ function App() {
     } } >
       Sign Up
     </button>
+    <button onClick={putDataNew} >Trigger</button>
     </>
   )
 }
