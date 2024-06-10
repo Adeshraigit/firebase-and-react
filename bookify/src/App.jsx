@@ -9,6 +9,8 @@ import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
 import ListingPage from './pages/List.jsx'
 import HomePage from './pages/Home.jsx'
+import BookDetailPage from './pages/Detail.jsx'
+import ViewOrder from './pages/ViewOrder.jsx'
 
 // Components
 import MyNavbar from './components/Navbar.jsx'
@@ -23,6 +25,8 @@ function App() {
     <Route path='/register' element={<Register/>} />
     <Route path='/login' element={<Login/>} />
     <Route path='/book/list' element={<ListingPage/>} />
+    <Route path='/book/view/:bookId' element={<BookDetailPage/>} />
+    <Route path='/book/orders' element={<ViewOrder/>} />
   </Routes>
   </div>
   )
