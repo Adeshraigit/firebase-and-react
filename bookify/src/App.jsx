@@ -11,6 +11,7 @@ import ListingPage from './pages/List.jsx'
 import HomePage from './pages/Home.jsx'
 import BookDetailPage from './pages/Detail.jsx'
 import ViewOrder from './pages/ViewOrder.jsx'
+import ViewOrderDetails from './pages/ViewOrderDetail.jsx'
 
 // Components
 import MyNavbar from './components/Navbar.jsx'
@@ -27,6 +28,7 @@ function App() {
     <Route path='/book/list' element={<ListingPage/>} />
     <Route path='/book/view/:bookId' element={<BookDetailPage/>} />
     <Route path='/book/orders' element={<ViewOrder/>} />
+    <Route path='/books/orders/:bookId' element={<ViewOrderDetails/>} />
   </Routes>
   </div>
   )

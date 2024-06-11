@@ -16,7 +16,7 @@ const HomePage = () => {
         <div className="container mt-5">
             <h1 className="mb-3" >List Books Here</h1>
             {
-            books.map(book => <BookCard id={book.id} key={book.id} {...book.data()} />)
+            books.map((book) => <BookCard link={`/book/view/${book.id}`} id={book.id} key={book.id} {...book.data()} />)
             }
         </div>
     )
