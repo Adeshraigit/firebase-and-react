@@ -6,6 +6,7 @@ import {getAuth,
     GoogleAuthProvider,
     signInWithPopup,
     onAuthStateChanged,
+    signOut,
 } from 'firebase/auth'
 import { getFirestore, collection, addDoc, getDoc, getDocs, doc, query, where } from "firebase/firestore"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
@@ -39,6 +40,11 @@ export const FirebaseProvider = (props)  => {
             else setUser(null);
         })
     }, [])
+
+    const signOutUser = () => {
+        signOut(firebaseAuth);
+        alert(`${user.displayName} logged out`)
+    }
 
     const signupUserWithEmailAndPassword = (email, password) => createUserWithEmailAndPassword(firebaseAuth, email, password)
 
@@ -98,7 +104,7 @@ export const FirebaseProvider = (props)  => {
 
     const getOrders = (bookId) => {
         const collectionRef = collection(firestore, 'books', bookId, 'orders');
-        const result = getDoc(collectionRef);
+        const result = getDocs(collectionRef);
         return result; 
     }
 
@@ -115,7 +121,8 @@ export const FirebaseProvider = (props)  => {
         placeOrder,
         fetchMyBooks,
         user,
-        getOrders
+        getOrders,
+        signOutUser
          }} >
             {props.children}
         </FirebaseContext.Provider>

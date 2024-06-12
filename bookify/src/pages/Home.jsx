@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFirebase } from "../context/Firebase";
 import BookCard from "../components/Card";
+import { Col, Row } from "react-bootstrap";
 
 const HomePage = () => {
 
@@ -13,12 +14,15 @@ const HomePage = () => {
     }, [])
 
     return (
-        <div className="container mt-5">
-            <h1 className="mb-3" >List Books Here</h1>
+    <>
+        <div className="grid">
+            <Row>
             {
             books.map((book) => <BookCard link={`/book/view/${book.id}`} id={book.id} key={book.id} {...book.data()} />)
             }
+            </Row>
         </div>
+        </>
     )
 }
 
